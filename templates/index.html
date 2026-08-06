@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Centro de Biotecnología Agropecuaria</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Centro de Biotecnología Agropecuaria</h1>
+
+<form action="/registrar" method="POST">
+    <label>Nombre Completo</label><br>
+    <input type="text" name="nombre" required><br><br>
+
+    <label>Número de Documento</label><br>
+    <input type="text" name="documento" required><br><br>
+
+    <label>Número de Ficha</label><br>
+    <input type="text" name="ficha" required><br><br>
+
+    <button type="submit">Registrar</button>
+</form>
+
+<hr>
+
+<h2>Aprendices Registrados</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Documento</th>
+        <th>Ficha</th>
+        <th>Fecha</th>
+    </tr>
+
+    {% for a in aprendices %}
+    <tr>
+        <td>{{ a[0] }}</td>
+        <td>{{ a[1] }}</td>
+        <td>{{ a[2] }}</td>
+        <td>{{ a[3] }}</td>
+        <td>{{ a[4] }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>
