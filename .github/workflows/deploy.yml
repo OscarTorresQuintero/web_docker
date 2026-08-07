@@ -16,6 +16,6 @@ jobs:
       - name: Construir y subir la imagen
         uses: docker/build-push-action@v5
         with:
-          context: ./backend
+          context: .
           push: true
           tags: oskitar55/proyecto-app-backend:v1
