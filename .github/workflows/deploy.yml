@@ -1,4 +1,3 @@
-```yaml
 name: Publicar Imagen en dockerhub
 
 on:
@@ -36,4 +35,3 @@ jobs:
             cd ~/DockerFlaskDesplegado
             docker compose pull app-backend
             docker compose up -d
-```
