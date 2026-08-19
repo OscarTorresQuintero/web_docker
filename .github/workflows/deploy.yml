@@ -55,4 +55,4 @@ jobs:
           script: |
             cd /home/ubuntu/web_docker
             docker compose pull app-backend
-            docker compose up -d
+            docker compose up -d --force-recreate app-backend
