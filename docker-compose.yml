@@ -40,15 +40,13 @@ services:
       - red-cba
 
   app-backend:
-    image: oskitar55/proyecto-app-backend:v1
+    image: oskitar55/proyecto-app-backend:v2
     container_name: app-backend
     restart: always
     env_file:
       - .env
     ports:
       - "${FLASK_PORT}:5050"
-    volumes:
-      - .:/app
     depends_on:
       servidor-bd:
         condition: service_healthy
