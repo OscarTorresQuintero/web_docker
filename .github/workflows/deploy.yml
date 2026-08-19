@@ -1,32 +1,39 @@
+```yaml
 name: Publicar Imagen en dockerhub
+
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+
     steps:
       - name: Descargar código
         uses: actions/checkout@v3
+
       - name: Iniciar sesión en Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
       - name: Construir y subir la imagen
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
           tags: oskitar55/proyecto-app-backend:v1
-          
-          - name: Desplegar en servidor cloud
-             uses: appleboy/ssh-action@v1.0.3
-           with:
+
+      - name: Desplegar en servidor cloud
+        uses: appleboy/ssh-action@v1.0.3
+        with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-             cd ~/DockerFlaskDesplegado
-             docker compose pull app-backend
-             docker compose up -d
+            cd ~/DockerFlaskDesplegado
+            docker compose pull app-backend
+            docker compose up -d
+```
