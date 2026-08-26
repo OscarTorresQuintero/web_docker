@@ -1,14 +1,18 @@
 from flask import Flask, render_template, request, redirect
 import mysql.connector
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
 def get_connection():
     return mysql.connector.connect(
-        host="servidor-bd",
-        user="root",
-        password="123456",
-        database="adso_db"
+        host=os.environ.get("DB_HOST"),
+        user=os.environ.get("DB_USER"),
+        password=os.environ.get("DB_PASSWORD"),
+        database=os.environ.get("DB_NAME")
     )
 
 @app.route("/")
@@ -50,6 +54,4 @@ def registrar():
     return redirect("/")
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5050)
-o
-
+    app.run(host="127.0.0.1", port=5050)
