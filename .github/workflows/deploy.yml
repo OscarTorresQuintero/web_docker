@@ -1,7 +1,9 @@
-﻿name: Pipeline CI/CD
+name: Pipeline CI/CD
 
 on:
   push:
+    branches: [ "main" ]
+  pull_request:
     branches: [ "main" ]
 
 jobs:
@@ -31,6 +33,7 @@ jobs:
 
   build-and-deploy:
     needs: test
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - name: Descargar codigo

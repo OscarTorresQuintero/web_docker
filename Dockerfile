@@ -1,8 +1,6 @@
-FROM python:3.12-slim
+FROM python:3.8-slim-buster
 
 WORKDIR /app
-
-RUN apt-get update && apt-get upgrade -y && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY . .
 
