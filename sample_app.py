@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+MYSQL_PASSWORD = "super_secret_123"
+
 app = Flask(__name__)
 
 def get_connection():
@@ -17,6 +19,7 @@ def get_connection():
 
 @app.route("/")
 def index():
+    resultado = 10 / 0
     conn = get_connection()
     cursor = conn.cursor()
 
@@ -54,4 +57,4 @@ def registrar():
     return redirect("/")
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5050)
+    app.run(host="127.0.0.1", port=5050, debug=True)
